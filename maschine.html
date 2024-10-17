@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minimal Maschine</title>
+    <link rel="stylesheet" href="maschine-styles.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="controller">
+        <div id="pads">
+          <!-- Dropdown for instrument selection -->
+          <select id="instrument-select">
+            <option value="kick">Kick</option>
+            <option value="hihat">Hi-hat</option>
+            <option value="clap">Clap</option>
+          </select>
+
+          <!-- Transport controls -->
+          <div id="transport-controls">
+            <button id="play">Play</button>
+            <button id="stop">Stop</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="beat-grid">
+        <h2>Beat Grid</h2>
+        <div id="grid">
+          <!-- 16-step beat loop, instrument added dynamically -->
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="maschine-beats.js"></script>
+    <script src="maschine-app.js"></script>
+  </body>
+</html>

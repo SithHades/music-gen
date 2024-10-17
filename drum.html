@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beat Machine</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Funky House Beat Machine</h1>
+      <div class="controls">
+        <div class="control-group">
+          <label for="bpm">Tempo (BPM):</label>
+          <input type="range" id="bpm" min="80" max="160" value="124" />
+          <span id="bpm-value">124</span>
+        </div>
+
+        <div class="control-group">
+          <label for="measures">Measures:</label>
+          <input type="range" id="measures" min="1" max="8" value="4" />
+          <span id="measures-value">4</span>
+        </div>
+
+        <button id="play-button" class="play-button">Play Beat</button>
+        <button id="stop-button" class="stop-button">Stop</button>
+      </div>
+
+      <div class="pads">
+        <div class="pad kick">Kick</div>
+        <div class="pad hihat">Hi-Hat</div>
+        <div class="pad clap">Clap</div>
+        <div class="pad bass">Bass</div>
+        <div class="pad synth">Synth</div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="drum-utility.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#container {
+  display: flex;
+  gap: 50px;
+}
+
+#controller {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#instrument-select {
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+#transport-controls {
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #888;
+}
+
+#beat-grid {
+  text-align: center;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(4, 40px); /* 4 columns */
+  grid-template-rows: repeat(4, 40px); /* 4 rows */
+  gap: 5px;
+}
+
+.step {
+  width: 40px;
+  height: 40px;
+  background-color: #444;
+  border: 1px solid #333;
+  cursor: pointer;
+}
+
+.step.active {
+  background-color: #f80;
+}
+
+.step.current {
+  border: 2px solid #fff; /* Highlight the currently playing beat */
+}

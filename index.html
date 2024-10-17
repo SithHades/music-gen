@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>House Music Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      .container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+      }
+      h1,
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      .controls {
+        display: grid;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      input,
+      select,
+      button {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        box-sizing: border-box;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      button:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+      }
+      .synth-controls,
+      .drum-controls {
+        border: 1px solid #ddd;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 5px;
+      }
+      #status {
+        text-align: center;
+        margin-top: 1rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>House Music Generator</h1>
+      <button id="initialize">Initialize Audio</button>
+      <div id="status">Click "Initialize Audio" to start</div>
+      <div class="controls">
+        <div>
+          <label for="measures">Measures:</label>
+          <input type="number" id="measures" value="4" min="1" max="16" />
+        </div>
+        <div>
+          <label for="bpm">BPM:</label>
+          <input type="number" id="bpm" value="128" min="60" max="200" />
+        </div>
+      </div>
+      <div class="synth-controls">
+        <h2>Synthesizer</h2>
+        <div>
+          <label for="synth-frequency">Frequency:</label>
+          <input
+            type="number"
+            id="synth-frequency"
+            value="440"
+            min="20"
+            max="20000"
+          />
+        </div>
+        <div>
+          <label for="synth-type">Waveform:</label>
+          <select id="synth-type">
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Sawtooth</option>
+            <option value="triangle">Triangle</option>
+          </select>
+        </div>
+        <button id="play-synth" disabled>Play Note</button>
+      </div>
+      <div class="drum-controls">
+        <h2>Drum Machine</h2>
+        <button id="play-kick" disabled>Play Kick</button>
+        <button id="play-hihat" disabled>Play Hi-Hat</button>
+      </div>
+      <button id="generate-beat" disabled>Generate Beat</button>
+      <button id="generate-funky-house-beat" disabled>
+        Generate Funky House Beat
+      </button>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+      let houseMusicGen;
+      const initializeButton = document.getElementById("initialize");
+      const statusElement = document.getElementById("status");
+      const controlButtons = document.querySelectorAll(
+        "button:not(#initialize)"
+      );
+
+      initializeButton.addEventListener("click", () => {
+        houseMusicGen = new HouseMusicGenerator();
+        statusElement.textContent = "Audio initialized. Ready to play!";
+        initializeButton.disabled = true;
+        controlButtons.forEach((button) => (button.disabled = false));
+      });
+
+      document.getElementById("play-synth").addEventListener("click", () => {
+        const frequency = parseFloat(
+          document.getElementById("synth-frequency").value
+        );
+        const type = document.getElementById("synth-type").value;
+        houseMusicGen.synth.playNote(frequency, 0.5, type);
+      });
+
+      document.getElementById("play-kick").addEventListener("click", () => {
+        houseMusicGen.drums.kick();
+      });
+
+      document.getElementById("play-hihat").addEventListener("click", () => {
+        houseMusicGen.drums.hihat();
+      });
+
+      document.getElementById("generate-beat").addEventListener("click", () => {
+        const measures = parseInt(document.getElementById("measures").value);
+        const bpm = parseInt(document.getElementById("bpm").value);
+        houseMusicGen.generateBeat(measures, bpm);
+      });
+      document
+        .getElementById("generate-funky-house-beat")
+        .addEventListener("click", () => {
+          const measures = parseInt(document.getElementById("measures").value);
+          const bpm = parseInt(document.getElementById("bpm").value);
+          houseMusicGen.generateFunkyHouseBeat(measures, bpm);
+        });
+    </script>
+  </body>
+</html>
